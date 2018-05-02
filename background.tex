@@ -6,3 +6,25 @@
 \FIXME{Literature review~\cite{azaise13,bwkk15,gb16,kt16,Leslie03}.}
 
 \FIXME{Describe MDP-based optimization and our history with it.}
+
+Markov Decision Processes (MDPs)~\cite{puterman} represent a general approach
+to modeling optimization problems and have been applied in a diverse set of
+application areas~\cite{White93}. Examples include robotics~\cite{ab10}, 
+economics~\cite{bs98}, experiment design~\cite{kb85},
+medical decisions~\cite{ahsr10}, manufacturing~\cite{yyl04},
+agriculture~\cite{Kristensen03},
+and our own group's use in scheduling~\cite{gtsg08,tggs10}
+and wireless spectrum management~\cite{mgc16}.
+
+In this proposal we adopt the definition used by Glaubius et al.~\cite{gtsg08}
+of a (discrete-time) Markov decision process as a 5-tuple
+$(\mathcal{X}, \mathcal{A}, T, R, \gamma)$, with \emph{states} designated
+as $\chi \in \mathcal{X}$, \emph{actions} designated as $a \in \mathcal{A}$,
+and a transition system, $T$, which gives the probability
+$P_T (\chi' \mid \chi, a)$ of transitioning from state $\chi$ to
+state $\chi'$ on action $a$.
+The reward function $R(\chi, a, \chi') \in \mathbb R_{\ge 0}$ describes the
+reward that accrues when transitioning from state $\chi$ to
+state $\chi'$ via action $a$, under a discount factor, $\gamma$,
+to ensure convergence of the long term reward.
+
