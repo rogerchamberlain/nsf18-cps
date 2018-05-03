@@ -27,9 +27,8 @@ reu: reu.tex
 	$(PDFLATEX) reu
 	$(PDFLATEX) reu
 
-plan: collab.tex
-	$(PDFLATEX) collab
-	$(PDFLATEX) collab
+ttp: ttp.tex
+	$(PDFLATEX) ttp
 
 mentor: mentor.tex
 	$(PDFLATEX) mentor
