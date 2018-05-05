@@ -2,7 +2,7 @@
 \label{sec:research}
 
 \subsection{Question 1 -- What are the qualitative and quantitative benefits
-that can be achieved for bulding daylighting and thermal management
+that can be achieved for building daylighting and thermal management
 through the use of catoptric systems?}
 
 There is ample literature that documents the benefits of natural light in
@@ -10,7 +10,7 @@ human-occupied spaces~\cite{Leslie03,ll01,pce00}, yet the thermal effects
 can also be significant~\cite{bmbc13} (i.e., too much sunlight can
 increase temperature to an unacceptable degree).
 
-While many studies focus on the benefits of a homogenous light levels
+While many studies focus on the benefits of a homogeneous light levels
 within a space~\cite{azaise13,bwkk15},
 there is often differing need for light level based on user.
 The increased control due to the independent positioning of the mirrors
@@ -48,7 +48,7 @@ With a low-level controller in place, the state space, $\mathcal{X}$,
 can encapsulate the set of mirrors pointed at each position in
 the image map.  The set of actions, $\mathcal{A}$, will embody the movement
 of one or more mirrors from their present position to a new position,
-and the transition system, $T$, will encode the probablistic variations
+and the transition system, $T$, will encode the probabilistic variations
 present in the available sunlight.  This allows the reward function, $R$,
 to be a quantified match between the desired image map and the resulting
 daylight that is directed to each position in the physical space.
@@ -82,14 +82,15 @@ investigate the degree to which they can be handled within the context
 of the low-level controller versus being dealt with within the high-level
 complete system control.
 
-We anticipate some of these considerations being incorporated as contraints
+We anticipate some of these considerations being incorporated as constraints
 within the optimization process and others as additional goals that we
-wish to maximise during the multi-objective optimization itself.  Let us
+wish to maximize during the multi-objective optimization itself.  Let us
 first consider those that will be addressed as constraints (e.g., safety).
 
-A commonly used safety constraint on the positioning subsystem is to
-specify limits on the range of motion (e.g., of each mirror).  This
-kind of limit can be imposed by the physical design of the pan-tilt
+\paragraph{Constraints.}
+A commonly used safety constraint on a positioning subsystem is to
+specify hard limits on the range of motion (e.g., of each mirror, individually).
+This kind of limit can be imposed by the physical design of the pan-tilt
 mechanics, simply by adding physical stops at the limit positions.
 
 The more interesting constraint systems occur when the safety considerations
@@ -99,12 +100,35 @@ the total light intensity that can be supported at various positions in the
 field of view of the mirrors. When providing heat into the HVAC system,
 we desire a high light concentration delivered to the heat transfer point.
 When illuminating a physical space for human occupants, the above
-levels of light concentration are not only undesireable, they are patently
+levels of light concentration are not only undesirable, they are patently
 unsafe.
 
-\FIXME{The interesting thing here is how properties like safety are 
-dependent on context, e.g., we want concentrated natural light when harvesting
-energy but not when illuminating a human-occupied space.}
+These context sensitive constraints add two additional requirements.
+First, the higher-level management system must be responsible for them.
+In our MDP formulation, we much adjust the feasible state space, $\mathcal{X}$,
+so that they are unreachable (or have sufficiently negative reward as to
+amount to the same thing).
+Second, we must also ensure that whatever choices are made by the optimization
+system (whether it be via MDPs or some other approach), the actual
+mirror positions are still constrained so as to not result in an
+unsafe condition.  This will require feedback of some form on the actual
+mirror positions and the ability to determine whether or not the actual
+positions differ from the controlled positions.  This might be accomplished
+either locally (e.g., via shaft encoders on the pan-tilt mechanism) or
+globally (e.g., via a visual monitoring system and appropriate image analysis
+software).
+
+\paragraph{Goals.}
+Many of the additional considerations are more appropriately addressed as
+additional (potentially competing) goals, adding to the desires of
+daylighting and heating.  An example here would be the
+impact on reliability of the system when individual mirrors are moved.  As
+with all electro-mechanical systems, the pan-tilt mechanism has a limited
+lifetime, which can be significantly impacted by its usage duty cycle
+(i.e., the more it is moved, the sooner it will fail).
+
+This is precisely the set of circumstances in which Markov decision
+processes excel. \FIXME{defend this statement.}
 
 \subsection{Question 3}
 
