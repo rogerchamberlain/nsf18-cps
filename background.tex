@@ -5,8 +5,6 @@
 
 \FIXME{Literature review~\cite{azaise13,bwkk15,gb16,kt16,Leslie03}.}
 
-\FIXME{Describe MDP-based optimization and our history with it.}
-
 Markov Decision Processes (MDPs)~\cite{puterman} represent a general approach
 to modeling optimization problems and have been applied in a diverse set of
 application areas~\cite{White93}. Examples include robotics~\cite{ab10}, 
@@ -15,6 +13,49 @@ medical decisions~\cite{ahsr10}, manufacturing~\cite{yyl04},
 agriculture~\cite{Kristensen03},
 and our own group's use in scheduling~\cite{gtsg08,tggs10}
 and wireless spectrum management~\cite{mgc16}.
+
+Our prior research has used Markov decision process
+models~\cite{gtsg08} to generate resource management policies
+off-line~\cite{gtgs09} for non-preemptive sharing of a resource
+between multiple purposes at once on-line.  For example, a meter-tall robot's
+camera (oriented by a pan-tilt unit similar to the ones we propose to
+use in our multi-mirror catoptric installations) may be directed
+downward to identify wire-frame chairs and other obstacles to
+navigation that other sensors on the robot may have difficulty
+detecting, or it may be directed upward to identify faces of people at
+a reception whose images it can then capture. Given distributions of
+the durations of intervals during which the camera would need to
+remain pointed in a given direction to complete an individual task,
+standard policy iteration techniques then can be used to generate
+run-time policies that in expectation maximize an objective such as
+adherence to a strictly proportional allocation of the resource over
+time~\cite{gtsg08}, or even a more general definition of the utility 
+of completing the different tasks at particular times~\cite{tggs10}.
+We also showed that when different distributions of task completion
+intervals can occur in different modes (e.g., when a robot moves
+from room to room), it is possible to learn on-line what mode
+the system is in, or if the mode is known what the distributions are,
+but not both~\cite{gtgsuai10}.
+
+However, policy iteration is exponentially expensive, and even the memory 
+requirements to store complete policies for on-line use may be prohibitive 
+in resource-limited systems.  We therefore focused next on the policies 
+that were being generated from the models, and discovered consistent 
+structure in those policies that allowed a reasonable heuristic 
+approximation.  For simple proportional sharing, a single geometric partition
+of a simplex could be calibrated to encode the appropriate policy accurately~\cite{gtspmgs10}.
+For utility-based resource sharing multiple disjoint heuristics were needed but
+the most effective one to use was clearly defined by problem parameters~\cite{tblwgs11}.
+
+As a further illustration both of the applicability of MDP-based
+policy iteration to generate effective resource management policies,
+we applied similar techniques to manage a much different resource:
+the transmission spectrum in wireless networks~\cite{mskgct13}.  Although 
+the semantics of that resource differed radically from the pan-tilt camera, 
+the MDP models were reasonably similar.  We extended the basic model to
+include modulation as well as admission decisions, discovered and characterized
+common structure among the policies that were generated, and again obtained
+efficient and effective heuristic policies for on-line use~\cite{mgc16}.
 
 In this proposal we adopt the definition used by Glaubius et al.~\cite{gtsg08}
 of a (discrete-time) Markov decision process as a 5-tuple
@@ -28,3 +69,4 @@ reward that accrues when transitioning from state $\chi$ to
 state $\chi'$ via action $a$, under a discount factor, $\gamma$,
 to ensure convergence of the long term reward.
 
+\FIXME{Add transition into the next section.}

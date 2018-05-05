@@ -60,14 +60,21 @@ for unprecidented capacity to position the available natural light where
 it is desired.  This can easily change over time, as the usage of the
 physical space changes.
 
-\FIXME{Is this a good place to define Open-Source Architecture (OSArc)?
-How do the notions of OSArc integrate with what we are doing?
-We are enabling direct user input into the lighting of a space. Isn't that
-an OSArc notion?
-Chander, could you provide some text that would go here? Is~\cite{BS13} a
-good citation? (I just found it on wikipedia.
-How about one or more things that you have written?)
-}
+The proposed research advances the investigation of reflected light by
+designing specific intensities in some areas and dissipated lighting
+conditions in other areas according to pre-determined, yet adjustable,
+image-based maps. The maps can consist of any raster image and generate the
+target positions for the reflected light in a space.  The image is sampled
+according to intensity (black to white) to determine the density
+of target points where the higher the value, the denser the resulting
+field of points. Using an image-based map allows users to visualize
+zones of intensity in an interior space prior to the mirrors reflecting
+the daylight. Any user is capable of supplying or creating the image
+to be used for the map, thus encouraging user control and interaction with
+the system. The engagement of any member of a community on the creation
+of that image has an impact on the entire community~\cite{BS13} and
+encourages dialog about the quality and quantity of light within their
+environment. 
 
 Given the desire to control natural light (sunlight) via a catoptric surface,
 repurposing it for illumination and/or thermal management, a number of
@@ -100,7 +107,7 @@ when harvesting energy for thermal management purposes) can be quite harmful
 if inadvertently aimed at humans. 
 
 Each of these system-level requirements must ultimately be included within
-the optimization problem formulation, either as constraints (important for
+the optimization problem formulation, either as constraints (e.g., for
 safety) or as additional objectives (e.g., reliability and/or maintainability).
 Fortunately, the MDP formalism is well suited to the addition of concerns
 such as these (especially those with a stochastic nature, as reliability

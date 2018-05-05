@@ -10,7 +10,20 @@ human-occupied spaces~\cite{Leslie03,ll01,pce00}, yet the thermal effects
 can also be significant~\cite{bmbc13} (i.e., too much sunlight can
 increase temperature to an unacceptable degree).
 
-\FIXME{Describe quantification of daylighting.}
+While many studies focus on the benefits of a homogenous light levels
+within a space~\cite{azaise13,bwkk15},
+there is often differing need for light level based on user.
+The increased control due to the independent positioning of the mirrors
+can provide functional benefits for people that need more or less
+light due to age of the occupant or their task. For example, someone using
+a computer needs less light since the screen is a source of
+artificial light while someone reading from physical media like
+a book requires higher light levels. The light level required for
+vision varies with the age of the occupants. As people get older,
+they need higher light levels and increased luminous contrast.
+Furthermore, everyone regardless of age have different qualities
+of vision. Therefore, having a system that can accommodate these
+varying conditions using daylight rather than artificial light is beneficial.
 
 For thermal management, the literature on harvesting sunlight for space
 heating is substantial (see, e.g.,~\cite{deW75,Hunt79,kbd76,Lunde80,smf08,wo06},
@@ -21,63 +34,46 @@ use catoptric systems (primarily for sun tracking). Our contributions here
 will be to integrate a sunlight harvesting system into dual-purpose use, both
 heating and illumination.
 
-\FIXME{We will explore the use of MDPs for multi-objective control
-of catoptric systems.}
+We will explore the use of Markov decision processes for multi-objective
+control of catoptric systems.  We will start with a single objective,
+matching a provided image map that represents a desired illumination pattern,
+and then generalize to include the competing goal of thermal energy
+harvesting.
 
-\FIXME{Describe our three previous uses of MDPs, and how the value-optimal
-solution can be estimated heuristically in each case. Chris, can you
-take a first crack at this?}
+For the purpose of designing an MDP, we will assume that a low-level
+control mechanism exists that can position each individual mirror as
+desired.  The MDP will model the higher-level management issues, e.g.,
+which mirror should be pointed in which direction?
+With a low-level controller in place, the state space, $\mathcal{X}$,
+can encapsulate the set of mirrors pointed at each position in
+the image map.  The set of actions, $\mathcal{A}$, will embody the movement
+of one or more mirrors from their present position to a new position,
+and the transition system, $T$, will encode the probablistic variations
+present in the available sunlight.  This allows the reward function, $R$,
+to be a quantified match between the desired image map and the resulting
+daylight that is directed to each position in the physical space.
 
-Our prior research has used Markov Decision Process
-models~\cite{gtsg08} to generate resource management policies
-off-line~\cite{gtgs09} for non-preemptive sharing of a resource
-between multiple purposes at once on-line.  For example, a meter-tall robot's
-camera (oriented by a pan-tilt unit similar to the ones we propose to
-use in our multi-mirror catoptric installations) may be directed
-downward to identify wire-frame chairs and other obstacles to
-navigation that other sensors on the robot may have difficulty
-detecting, or it may be directed upward to identify faces of people at
-a reception whose images it can then capture. Given distributions of
-the durations of intervals during which the camera would need to
-remain pointed in a given direction to complete an individual task,
-standard policy iteration techniques then can be used to generate
-run-time policies that in expectation maximize an objective such as
-adherence to a strictly proportional allocation of the resource over
-time~\cite{gtsg08}, or even a more general definition of the utility 
-of completing the different tasks at particular times~\cite{tggs10}.
-We also showed that when different distributions of task completion
-intervals can occur in different modes (e.g., when a robot moves
-from room to room), it is possible to learn on-line what mode
-the system is in, or if the mode is known what the distributions are,
-but not both~\cite{gtgsuai10}.
+After an initial exploration of the MDP formulated as described above,
+we will then proceed to expand the framework to include the additional
+objective of harvesting heat.  We will quantify the benefits of each
+objective using general utility functions~\cite{tggs10} in a manner previously
+explored by our group. One candidate set of utility functions we will
+investigate will be to prioritize daylighting performance, and only
+allocate excess sunlight to the HVAC subsystem. A second alternative
+will be to proportionally provide sunlight to each goal up to the point
+that the illumination can no longer benefit, at which point all additionally
+available sunlight goes into heating.
 
-However, policy iteration is exponentially expensive, and even the memory 
-requirements to store complete policies for on-line use may be prohibitive 
-in resource-limited systems.  We therefore focused next on the policies 
-that were being generated from the models, and discovered consistent 
-structure in those policies that allowed a reasonable heuristic 
-approximation.  For simple proportional sharing, a single geometric partition
-of a simplex could be calibrated to encode the appropriate policy accurately~\cite{gtspmgs10}.
-For utility-based resource sharing multiple disjoint heuristics were needed but
-the most effective one to use was clearly defined by problem parameters~\cite{tblwgs11}.
+In each of the above MDPs under investigation, we will utilize the
+value-optimal solution (guaranteed to exist within Markov decision process
+theory); however, this solution typically must be computed off-line, since
+it is, in general, exponentially expensive to compute.  In parallel, we
+will explore the space of value-optimal solutions and seek to formulate
+an inexpensive to compute heuristic that closely approximates the
+true value-optimal solution.
 
-As a further illustration both of the applicability of MDP-based
-policy iteration to generate effective resource management policies,
-we applied similar techniques to manage a much different resource:
-the transmission spectrum in wireless networks~\cite{mskgct13}.  Although 
-the semantics of that resource differed radically from the pan-tilt camera, 
-the MDP models were reasonably similar.  We extended the basic model to
-include modulation as well as admission decisions, discovered and characterized
-common structure among the policies that were generated, and again obtained
-efficient and effective heuristic policies for on-line use~\cite{mgc16}.
-
-\FIXME{Describe our approach to applying MDPs to catoptric system control.
-This includes quantification of benefits, formulation of a combined
-objective, identifying the control degrees of freedom, encapsulating all
-of the above in an MDP framework, exploring the MDP state space, seeking
-to find a heuristic that approximates the value-optimal solution.}
-
-\subsection{Question 2}
+\subsection{Question 2 -- How do we provide for the safety, reliability,
+maintainability, and continued efficacy of these systems?}
 
 \FIXME{The interesting thing here is how properties like safety are 
 dependent on context, e.g., we want concentrated natural light when harvesting
@@ -86,4 +82,4 @@ energy but not when illuminating a human-occupied space.}
 \subsection{Question 3}
 
 \FIXME{We will investigate the viability and utility of two candidate
-abstractions: direct mirror control and MDP control.}
+abstractions: direct mirror control and MDP control~\cite{cac18}.}
