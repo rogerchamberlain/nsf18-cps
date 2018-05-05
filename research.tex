@@ -82,6 +82,26 @@ investigate the degree to which they can be handled within the context
 of the low-level controller versus being dealt with within the high-level
 complete system control.
 
+We anticipate some of these considerations being incorporated as contraints
+within the optimization process and others as additional goals that we
+wish to maximise during the multi-objective optimization itself.  Let us
+first consider those that will be addressed as constraints (e.g., safety).
+
+A commonly used safety constraint on the positioning subsystem is to
+specify limits on the range of motion (e.g., of each mirror).  This
+kind of limit can be imposed by the physical design of the pan-tilt
+mechanics, simply by adding physical stops at the limit positions.
+
+The more interesting constraint systems occur when the safety considerations
+are no longer locally determinable, but are dependent upon context.
+An example that is relevant for our catoptric surfaces is a limit on
+the total light intensity that can be supported at various positions in the
+field of view of the mirrors. When providing heat into the HVAC system,
+we desire a high light concentration delivered to the heat transfer point.
+When illuminating a physical space for human occupants, the above
+levels of light concentration are not only undesireable, they are patently
+unsafe.
+
 \FIXME{The interesting thing here is how properties like safety are 
 dependent on context, e.g., we want concentrated natural light when harvesting
 energy but not when illuminating a human-occupied space.}
