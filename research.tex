@@ -1,6 +1,9 @@
 \section{Research Description}
 \label{sec:research}
 
+We will describe the research in terms of our approach to addressing each
+of the specific questions posed in the introduction.
+
 \subsection{Question 1 -- What are the qualitative and quantitative benefits
 that can be achieved for building daylighting and thermal management
 through the use of catoptric systems?}
@@ -52,6 +55,8 @@ and the transition system, $T$, will encode the probabilistic variations
 present in the available sunlight.  This allows the reward function, $R$,
 to be a quantified match between the desired image map and the resulting
 daylight that is directed to each position in the physical space.
+There are any number of approaches to image comparison quantification
+that can be used here~\cite{ds99,my09,wbo97}.
 
 After an initial exploration of the MDP formulated as described above,
 we will then proceed to expand the framework to include the additional
@@ -128,7 +133,22 @@ lifetime, which can be significantly impacted by its usage duty cycle
 (i.e., the more it is moved, the sooner it will fail).
 
 This is precisely the set of circumstances in which Markov decision
-processes excel. \FIXME{defend this statement.}
+processes excel. For the initial goals (of question~1), is is quite
+likely that there are multiple optimal solutions (e.g., simply exchange
+to pointing of two mirrors and the goals are unchanged).  However,
+once we add in considerations of reliability, which is impacted by
+frequency of use, we now have a much richer search space,
+and a natural fit for probabilitic reward.
+The MDP-based optimization approach is particularly will suited for
+this type of problem, and can find optimal solutions that incorporate
+minimal movement of mirrors between configurations, thereby diminishing
+the maintainence costs during the normal use of the system.
+
+The research task here is to develop, experiment with, and evaluate
+Markov decision processes that simultaneously deliver daylight where it
+is most beneficial, maintain the safety of the overall space,
+and provide for the reliability, maintainability, and efficacy of the
+catoptric surface itself.
 
 \subsection{Question 3 -- Can we design abstractions that encapsulate
 subsystems for effective reuse?}
