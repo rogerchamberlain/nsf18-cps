@@ -10,9 +10,25 @@
 \caption{Ray tracing analysis of daylighting design.}
 \end{figure}
 
-\FIXME{Literature review~\cite{azaise13,bwkk15,gb16,kt16,Leslie03}.}
+Leslie~\cite{Leslie03} and Alrubaih et al.~\cite{azaise13} provide
+a pair of review articles that effectively summarize the current
+approaches to daylighting in modern building design.
+For the most part, these are passive systems, or might include
+active control of shades~\cite{kt16}, with a strong emphasis on
+achieving uniform, homogeneous illumination~\cite{bwkk15,gb16}.
+Our emphasis is on dynamic control of the light position, with the explicit
+intent to be inhomogeneous in the illumination patterns.
 
-Markov Decision Processes (MDPs)~\cite{puterman} represent a general approach
+There have been a number of efforts to quantitatively model and
+empirically measure prototype daylighting
+systems~\cite{bwkk15,fsdm14,ls06,vgf+13}. A pair of studies, first by
+Lee and Selkowitz~\cite{ls06} and followed by Fernandes et al.\cite{fsdm14},
+initially evaluated the potential for energy savings in the New York Times
+Headquarters building and then measured the actual realized savings.
+
+In this work, we will exploit Markov Decision Process (MDP)
+formal theory~\cite{puterman} an an approach to optimization of the
+catoptric surface control. MDPs represent a general approach
 to modeling optimization problems and have been applied in a diverse set of
 application areas~\cite{White93}. Examples include robotics~\cite{ab10}, 
 economics~\cite{bs98}, experiment design~\cite{kb85},
