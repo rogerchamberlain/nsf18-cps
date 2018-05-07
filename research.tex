@@ -69,6 +69,8 @@ will be to proportionally provide sunlight to each goal up to the point
 that the illumination can no longer benefit, at which point all additionally
 available sunlight goes into heating.
 
+\FIXME{Add acceleration profile to MDP formulation.}
+
 In each of the above MDPs under investigation, we will utilize the
 value-optimal solution (guaranteed to exist within Markov decision process
 theory); however, this solution typically must be computed off-line, since
@@ -153,5 +155,32 @@ catoptric surface itself.
 \subsection{Question 3 -- Can we design abstractions that encapsulate
 subsystems for effective reuse?}
 
-\FIXME{We will investigate the viability and utility of two candidate
-abstractions: direct mirror control and MDP control~\cite{cag18}.}
+Layered \emph{system architectures}\footnote{We use the term
+\emph{system architecture}
+to denote computer hardware/software architecture, distinguishing it from
+architecture for the built world around us.}
+have proven effective in providing standardized interfaces to
+support portability
+and reuse of hardware and software,
+while allowing new innovations and abstractions
+to enrich system capabilities.
+Even when systems don't adhere strictly to standards
+such as the OSI~\cite{osi} networking model or the POSIX~\cite{posix} operating
+systems interface model, system designers, developers,
+and users still benefit
+from the structure those models provide.
+
+This occurs largely because standardized interfaces establish clear
+boundaries of
+responsibility on which other layers may rely, while allowing an essential
+``permission to tinker'' with various implementations between those
+boundaries. For cyber-physical systems, whose semantics include timing
+and physical properties not considered in previous cyber-only system
+architectures, there is significantly less experience with what interfaces,
+abstractions, and even broad system layers are truly common (and so perhaps
+could be standardized) versus which other aspects are more likely to
+diverge between systems, and so should be free to do so~\cite{cag18}.
+
+In this research, we will investigate the viability and utility of
+two candidate abstractions: direct mirror control and MDP control.
+
