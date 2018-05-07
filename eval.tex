@@ -1,18 +1,66 @@
 \section{Evaluation/Experimentation Plan}
 \label{sec:eval}
 
-\FIXME{Two sites identified:}
+We will organize our experimentation and evaluation activities around
+three prototype catoptric surfaces.  The first is the system currently
+being installed in the south window of Steinberg Hall's atrium (described
+in Section~\ref{sec:background}).
+The second will be designed for and installed at VelociData, Inc.,
+a startup firm in
+St.~Louis that is located in the recently announced \emph{39~North}
+innovation district.
+The third will be designed for an installed at BECS Technology, Inc.,
+a local manufacturer of electronic control systems that has recently
+relocated to a newly redeveloped 42,000~sq.~ft. facility. 
+
+\subsection{Steinberg Hall, Washington University in St. Louis}
+
+Steinberg Hall is situated on the Danforth Campus of Washington University
+in St.~Louis. It is one of the buildings that houses the College
+of Architecture, and is within easy walking distance of the Dept. of
+Computer Science and Engineering.
+
+The catroptic surface that is being installed at the south end of the
+atrium will be complete by the start date of the proposed research project.
+We will use it for a number of purposes:
 \begin{enumerate}
 
-\item {\bf VelociData, Inc.}, 10425 Old Olive Stree Rd., St.~Louis, MO.
+\item Development and calibration of quantitative daylight delivery models.
+We will evaluate the effectiveness of our current ray-tracing software
+system in assessing the impact of different configurations of the surface
+(i.e., various mirror positions).  Empirical evaluation will use a number
+of light meters distributed within the space. The data collected will be
+compared to our predictions as well as the analytical models
+of both Bueno et al.~\cite{bwkk15} and Galatioto and Beccali~\cite{gb16}.
+
+\item Practical aspects.
+We will learn several practical things from this installation, including
+the positioning precision achievable with our current physical design, the
+viability of operating the mirror positioning motors open loop (the pan-tilt
+is stepper motor driven and the current system does not incorporate
+shaft encoders or other positioning feedback), etc.
+
+\item Investigation of the ability to provide positioning feedback via
+image analysis.  We will install a camera with the full surface in its
+field of view and assess the viability of using image analysis techniques
+to discern the orientation of each mirror.  An imporant component of this
+will be the degree of precision that is achievable.
+
+\end{enumerate}
+
+\subsection{Velocidata, Inc., 39 North innovation district}
+
+10425 Old Olive Stree Rd., St.~Louis, MO.
+
 \FIXME{VelociData is located in the recently announced \emph{39 North}
 innovation district, which has the Danforth
 Plant Science Center, Monsanto, Bio Research \& Development Growth Park,
 and Heliz Center Biotech Incubator as anchors.}
 
-\item {\bf BECS Technology, Inc.}, 10818 Midwest Industrial Dr., St.~Louis, MO.
+\subsection{BECS Technology, Inc., St. Louis County}
+
+10818 Midwest Industrial Dr., St.~Louis, MO.
+
 \FIXME{BECS Technology is a small manufacturer of electronic control
 systems in a number of markets (e.g., agriculture, aquatics, refrigeration).
 We will have access to the HVAC system in their building.}
-
-\end{enumerate}
