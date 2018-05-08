@@ -179,4 +179,36 @@ and rebuild as needed.
 
 \subsection{Software Development and Assessment}
 
-\FIXME{What should go here?}
+The current software for raytracing and physical modeling is within
+Rhinoceros 3D (Rhino3D), a free form surface modeling system that utilizes a
+non-uniform rational B-spline (NURBS) mathematical representation.
+The current optimization (not MDP-based) is coded using
+Grasshopper, a visual programming language plug-in.
+Grasshooper has been used in the past for lighting performance
+analysis~\cite{Echarri16,Willis16}.
+
+The existing positioning software is written in a combination of
+Python (executing on a Raspberry Pi) and C (executing on an Arduino Uno).
+The Rhino3D/Grasshopper output is communicated to Python via CSV
+files on the filesystem.
+
+The existing MDP model software is written in C++ and is not integrated
+into the above software components at all.
+
+Clearly, an important software development task in this research project
+will be to enable each of the above software elements to interact with one
+another, preferrably in a relatively seamless manner.
+
+When our research group develops software that is intended to support
+the research questions being investigated (as opposed to the software
+effort being the research question itself), we have a practice of adopting
+software engineering techniques that closely approximate those used
+in industrial settings.  For example, we have regular code reviews,
+testing is performed by individuals who are distinct from the developers,
+the software design is presented to the group and its pros and cons
+discussed prior to implementation, etc.
+
+The assessment of the software will primarily be embodied in the evaluation
+of the catroptic surfaces themselves.  However, we will evaluate the
+performance of all of the software, ensuring that execution times are
+reasonable for off-line tasks and deadlines are met for real-time tasks.
