@@ -17,9 +17,6 @@ budget: budgetjustify.tex
 
 data: data.tex
 	$(PDFLATEX) data
-	-bibtex data
-	$(PDFLATEX) data
-	$(PDFLATEX) data
 
 reu: reu.tex
 	$(PDFLATEX) reu
