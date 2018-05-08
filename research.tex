@@ -56,6 +56,19 @@ lighting needs, as well as constraints to keep thermal effects within desired ra
 We will start with a single objective, matching a provided image map that represents a 
 desired illumination pattern, and then generalize this to include the separate goal of 
 thermal energy harvesting while keeping room temperatures within a specified range.
+To illustrate what we mean by an image map, Figure~\ref{fig:maps}
+shows a set of arbitrary example images, associated with the mirror
+positions that will create those images.  The forward problem is determining
+the resulting image given the mirror positions.  The optimization problem
+is determining the required mirror positions given the desired image.
+
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.9\linewidth]{figures/maps}
+\caption{Example image maps (bottom) and associated mirror positioning (top).}
+\label{fig:maps}
+\end{figure}
+
 For the purpose of designing an MDP, we will leverage the ability of the low-level
 control mechanism to position each individual mirror as desired.  The MDP state-space 
 will model higher-level management issues, e.g., which mirror should be pointed in which 
@@ -72,13 +85,6 @@ ability to enact more rapid adaptations to environmental variations and to perfo
 lighting effects (e.g., to get the attention of the people in a space if an emergency
 alert were issued), and also in terms of tracking the wear-and-tear on the pan-tilt units and 
 how that affects longevity and reliability of the catoptric arrays.
-
-\begin{figure}[ht]
-\centering
-\includegraphics[width=0.9\linewidth]{figures/maps}
-\caption{Example image maps and associated mirror positioning. \FIXME{ref}}
-\label{fig:maps}
-\end{figure}
 
 With a low-level controller in place, the state space, $\mathcal{X}$,
 can encapsulate the set of mirrors pointed at each position in
