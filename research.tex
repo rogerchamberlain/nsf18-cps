@@ -221,6 +221,7 @@ diverge between systems, and so should be free to do so~\cite{cag18}.
 In this research, we will investigate the viability and utility of
 two candidate abstractions: direct mirror control and MDP control.
 
+\paragraph{Pan-tilt control.}
 An initial version of a library (and associated programming interface) 
 for pan-tilt control of our mirror units is already in place~\cite{Mitchell18}.
 It is based upon an Arduino Uno microcontroller commanding the stepper
@@ -256,9 +257,21 @@ We also will investigate more general use of light in our approach, by adding
 lenses as well as mirrors, adding color (e.g., by covering some mirrors with colored film),
 and other effects. \FIXME{Chandler and Roger, please elaborate on this.}
 
-\FIXME{Talk about MDP control.}
+\paragraph{MDP control.}
+As is the case with pan-tilt control, we already have an initial functioning
+piece of software that, given an MDP model, provides both the
+value-optimal decision at any point in the design space as well as
+the expected value of reward~\cite{mskgct13,tggs10}.
+In the current edition, the user must provide the details of the MDP model
+by authoring a set of software routines (in C++) that effectively build
+an in-memory representation of the MDP model.
 
-The MDP models also will be extended to consider concurrent positioning of mirrors, in
+We will explore alternative interfaces, both textual and graphical,
+for articulating the details of an MDP model.  This is particularly
+challenging as the models themselves are frequently quite substantial
+in size.
+
+The MDP models themselves also will be extended to consider concurrent positioning of mirrors, in
 part to ameliorate wear-and-tear on the pan-tilt units, and in part to achieve new dynamic
 lighting effects that can include combinations of sequential and concurrent repositioning.
 
