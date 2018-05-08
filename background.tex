@@ -1,20 +1,54 @@
 \section{Background and Related Work}
 \label{sec:background}
 
-\FIXME{Describe first two installations.}
+The current research proposal was preceded by two projects.
+The first project, titled AMP, created a prototype to redirect
+daylight deeper into specific locations with a lightwell.
+The building in which the prototype was installed is an 8~story factory
+building built in 1895, in which a 5~story light well was cut out of
+the floors. A skylight was located above the lightwell and provided the
+daylight source.  The primary goal of the project was to develop the
+computational techniques to be able to reflect the rays of light into
+the darker recesses of the lightwell. 
+Figure~\ref{fig:raytracing} shows an example output from the resulting software
+system (analyzing a hypothetical location).
+The secondary goal was to develop
+a surface that connected to existing columns and beams, which was
+divided into 300 reflective sub-surfaces to achieve the goal.
+The project verified that the 300 custom geometrical sub-surfaces
+could be designed and fabricated (see Figure~\ref{fig:amp}).
+The main limitation of the project
+was that each reflective sub-surface was a fixed geometry.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{figures/raytracing}
-\label{fig:raytracing}
 \caption{Ray tracing analysis of daylighting design.}
+\label{fig:raytracing}
 \end{figure}
+
+The second project, title Catoptric Surface: Steinberg prototype,
+addressed the limitation of fixed geometry in AMP. The goal of the
+prototype was to create a series of mirrors that were independently
+adjustable according to solar position throughout the day and desired
+location within the building to reflect the light. The ability to
+vary the intensity of reflected daylight within the interior of a
+building provides the occupants control of the light level for varying tasks
+such as a lower light level required to read from a screen versus higher
+light level for reading physical paper. The increased level of control
+was enabled through the development of 2 axes of rotation of each mirror
+independently under software control. The prototype provides the proof
+of concept that individually controlled mirrors can effectively direct
+daylight in a very controlled geometry. 
+Figure~\ref{fig:steinberg2} shows a CAD illustration of the prototype,
+and Figure~\ref{fig:steinberg} is a photograph of a small number of
+the installed mirrors.
 
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.8\linewidth]{figures/steinberg2}
-\label{fig:steinberg2}
 \caption{CAD drawing of the Steinberg Hall prototype catoptric surface.}
+\label{fig:steinberg2}
 \end{figure}
 
 Leslie~\cite{Leslie03} and Alrubaih et al.~\cite{azaise13} provide
@@ -98,5 +132,6 @@ The reward function $R(\chi, a, \chi') \in \mathbb R_{\ge 0}$ describes the
 reward that accrues when transitioning from state $\chi$ to
 state $\chi'$ via action $a$, under a discount factor, $\gamma$,
 to ensure convergence of the long term reward.
+In what follows, we will exploit the formal theory of MDPs as an
+approach to optimization of the configuration of catoptric surfaces.
 
-\FIXME{Add transition into the next section.}

@@ -40,7 +40,10 @@ We will learn several practical things from this installation, including
 the positioning precision achievable with our current physical design, the
 viability of operating the mirror positioning motors open loop (the pan-tilt
 is stepper motor driven and the current system does not incorporate
-shaft encoders or other positioning feedback), etc.
+shaft encoders or other positioning feedback), the benefits (if any)
+of controlling acceleration in addition to position, the timing
+requirements for configuration changes, the ability to effect
+multiple mirror movements in parallel, etc.
 
 \item Investigation of the ability to provide positioning feedback via
 image analysis.  We will install a camera with the full surface in its
@@ -130,7 +133,16 @@ The unique benefit to this installation is that they have agreed to
 allow us to have access to the HVAC system in their building (see letter
 of collaboration).
 
-\FIXME{Describe HVAC system at BECS, and how we will tie in.}
+The HVAC system at BECS is one in which the hydronic water loop
+also serves as the fire protection sprinkler system~\cite{Janus01,wm79}.
+Individual heat exchangers either deliver heat into the loop 
+(e.g., from a boiler) or extract heat from the loop (e.g., to a
+cooling tower).
+An experimental loop that can be the focus point for light from
+a catoptric surface is readily incorporated into a system such
+as this.  The integration is made even easier because BECS, as
+a manufacturer of aquatics equipment, uses a controller of its own
+design to manage the entire system.
 
 We will use this installation for the following purposes:
 
@@ -148,7 +160,12 @@ This will also include any human evaluations that are undertaken at
 the VelociData site.
 
 \item Integration into the HVAC system.
-\FIXME{Describe this.}
+We will implement a heating loop that is capable of delivering
+thermal energy into the building's main hydronic water loop.
+The temperature of the water in this loop will be logged, and the
+master HVAC controller (built by BECS) will enable us to determine
+the effectiveness of the heat transfer.  We will also be able to
+quantify the amount of energy savings that results.
 
 \item Assessment of manufacturability.
 As described in the Transfer to Practice Supplementary Document, BECS
@@ -156,8 +173,6 @@ is planning to assist us in evaluating the commercial viability of the
 catoptric surface as a product.  An important piece of this evaluation is
 the assessment (by design and manufacturing engineers at BECS) of the
 manufacturability of the system.
-
-\item \FIXME{What else here?}
 
 \item Iterate the design. Again, we do not expect the initial design
 to be all that it can be. As for the previous systems, we will redesign
