@@ -76,7 +76,7 @@ how that affects longevity and reliability of the catoptric arrays.
 \begin{figure}[ht]
 \centering
 \includegraphics[width=0.9\linewidth]{figures/maps}
-\caption{Example image maps and associated mirror positioning.}
+\caption{Example image maps and associated mirror positioning. \FIXME{ref}}
 \label{fig:maps}
 \end{figure}
 
@@ -221,12 +221,36 @@ diverge between systems, and so should be free to do so~\cite{cag18}.
 In this research, we will investigate the viability and utility of
 two candidate abstractions: direct mirror control and MDP control.
 
-\FIXME{Talk about direct mirror control.}
+An initial version of a library (and associated programming interface) 
+for pan-tilt control of our mirror units is already in place~\cite{Mitchell18}.
+It is based upon an Arduino Uno microcontroller commanding the stepper
+motors controlling the mirrors (up to 32 mirrors per Arduino),
+with communication to the Arduino
+via a USB link.  Python software executing on a Raspberry Pi coordinates
+a set of up to 10~Arduinos using a USB hub.
 
-We will extend our current prototype for mirror control to include concurrent positioning
+While the initial implementation simply commands position, it is open loop
+and therefore requires periodic resetting (which we accomplish by moving the
+pan-tilt to the stops in each dimension), and only one motor 
+connected to each Arduino can be in motion at a time.
+As part of the research project, we will extend this positioning control
+software in the following ways:
+\begin{enumerate}
+
+\item support closed-loop control, either through the use of shaft encoding
+sensors or image-based feedback; and
+
+\item support path direction (including acceleration profiles) in addition
+to positioning commands.
+
+\end{enumerate}
+
+We will also extend our current prototype for mirror control to include concurrent positioning
 of multiple mirrors at once -- although positioning a mirror takes only seconds currently,
 the latency to adjust an entire row of mirrors in an array is noticable, and may introduce
 undesirable lighting artifacts at least temporarily as mirrors are adjusted.
+
+
 
 We also will investigate more general use of light in our approach, by adding
 lenses as well as mirrors, adding color (e.g., by covering some mirrors with colored film),
@@ -238,3 +262,10 @@ The MDP models also will be extended to consider concurrent positioning of mirro
 part to ameliorate wear-and-tear on the pan-tilt units, and in part to achieve new dynamic
 lighting effects that can include combinations of sequential and concurrent repositioning.
 
+Both of these software systems (and their associated interfaces), constitute
+abstractions that have strong potential for reuse in other contexts.
+Pan-tilt positioning control is ubiquitious in imaging for use
+with cameras (although we have a few features, such as concurrent movement
+at scale, that are likely unique relative to previous systems),
+and we have already used the initial versions of the MDP
+software in multiple contexts~\cite{mskgct13,tggs10}.
