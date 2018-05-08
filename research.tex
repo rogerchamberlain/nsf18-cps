@@ -10,9 +10,9 @@ through the use of catoptric systems?}
 
 The benefits of natural light in human-occupied spaces are well documented in the literature~\cite{hhm15,Leslie03,ll01,pce00}, and yet thermal effects also may be significant~\cite{bmbc13} (i.e., too much sunlight can increase temperature to unacceptable levels).
 While many studies focus on the benefits of homogeneous light levels within a space~\cite{azaise13,bwkk15,gb16}, appropriate light levels may differ based on user needs.
-The increased range of lighting effects offered the independent positioning of mirrors
+The increased range of lighting effects offered by the independent positioning of mirrors
 can provide functional benefits for people that need more or less
-light, e.g., due to age of the occupant or the task she or he is performing. For 
+light, e.g., due to the age of the occupant or the task she or he is performing. For 
 example, someone using a computer may want less light since the screen is a source of
 artificial light while someone reading from physical media like
 a book may require higher light levels. Similarly, light levels required for
@@ -44,12 +44,12 @@ environmental effects such as cloud cover on the natural light that is available
 
 Another motivation for using MDPs is their efficacy in generating highly regular 
 policies that can be implemented efficiently at run-time.  For example, policies for
-proportional sharing of a non-preemptive resource~\cite{gtsg08,gtgs09} can be 
+proportional sharing of a non-preemptive resource~\cite{gtgs09,gtsg08} can be 
 approximated efficiently on-line with high accuracy~\cite{gtspmgs10}.  Scenarios
 that are relevant to this research, such as using multiple catoptric arrays to
 provide even and consistent lighting of a collaborative work area, have similarly
 regular structure that an MDP-based approach can exploit.  Our prior work also
-shows that custom policies can be generated~\cite{tggs10,tblwgs11} that account for various 
+shows that custom policies can be generated~\cite{tblwgs11,tggs10} that account for various 
 nuances (e.g., in this proposed research, individual variations in visual acuity and thus 
 lighting needs, as well as constraints to keep thermal effects within desired ranges).
 
@@ -70,7 +70,7 @@ unit including its initial and final position, and the accelerations, velocities
 it should adhere to in its trajectory along that path - this is important both in its
 ability to enact more rapid adaptations to environmental variations and to perform dynamic
 lighting effects (e.g., to get the attention of the people in a space if an emergency
-alert were issued), but also in terms of tracking the wear-and-tear on the pan-tilt units and 
+alert were issued), and also in terms of tracking the wear-and-tear on the pan-tilt units and 
 how that affects longevity and reliability of the catoptric arrays.
 
 With a low-level controller in place, the state space, $\mathcal{X}$,
@@ -85,7 +85,7 @@ map and the resulting daylight that is directed to each position in the physical
 For more complex cases involving different individualized lighting requirements,
 multiple objectives, etc., we will \emph{convolve} the different objective
 functions to achieve a single common reward function, as we have done
-in our prior work~\cite{tggs10,tblwgs11}.
+in our prior work~\cite{tblwgs11,tggs10}.
 
 After an initial exploration of the MDP formulated as described above,
 we will then proceed to expand the framework to include the additional
@@ -140,7 +140,7 @@ These context sensitive constraints add two additional requirements.
 First, the higher-level management system must be responsible for them.
 In our MDP formulation, we much adjust the feasible state space, $\mathcal{X}$,
 so that they are unreachable (or have sufficiently negative reward as to
-preclude the policy violating them~\cite{tggs10,tblwgs11}).
+preclude the policy violating them~\cite{tblwgs11,tggs10}).
 Second, we must also ensure that whatever choices are made by the optimization
 system (whether it be via MDPs or some other approach), the actual
 mirror positions are still constrained so as to not result in an
@@ -150,6 +150,7 @@ positions differ from the controlled positions.  This might be accomplished
 either locally (e.g., via shaft encoders on the pan-tilt mechanism) or
 globally (e.g., via a visual monitoring system and appropriate image analysis
 software).
+We will explore both options.
 
 \paragraph{Goals.}
 Many of the additional considerations are more appropriately addressed as
@@ -180,7 +181,8 @@ catoptric surface itself.  For example, when we introduce accelerations
 of the pan-tilt units into the MDP model as described above, we will bias
 the reward function to avoid hard stops and rapid accelerations which both
 can wear out the pan-tilt units and also may contribute to uncertainty in
-positioning (similar to how wheel-slip must be addresed in mobile robotics).
+positioning (similar to how wheel-slip must be addressed in mobile
+robotics~\cite{mn87}).
 
 \subsection{Question 3 -- Can we design abstractions that encapsulate
 subsystems for effective reuse?}
@@ -215,11 +217,11 @@ two candidate abstractions: direct mirror control and MDP control.
 \FIXME{Talk about direct mirror control.}
 
 We will extend our current prototype for mirror control to include concurrent positioning
-of multiple mirror at once - although positioning a mirror takes only seconds currently,
+of multiple mirrors at once -- although positioning a mirror takes only seconds currently,
 the latency to adjust an entire row of mirrors in an array is noticable, and may introduce
 undesirable lighting artifacts at least temporarily as mirrors are adjusted.
 
-We also will generalize the usese of light in our approach, by adding
+We also will investigate more general use of light in our approach, by adding
 lenses as well as mirrors, adding color (e.g., by covering some mirrors with colored film),
 and other effects. \FIXME{Chandler and Roger, please elaborate on this.}
 
