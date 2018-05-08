@@ -8,55 +8,84 @@ of the specific questions posed in the introduction.
 that can be achieved for building daylighting and thermal management
 through the use of catoptric systems?}
 
-There is ample literature that documents the benefits of natural light in
-human-occupied spaces~\cite{hhm15,Leslie03,ll01,pce00}, yet the thermal effects
-can also be significant~\cite{bmbc13} (i.e., too much sunlight can
-increase temperature to an unacceptable degree).
-
-While many studies focus on the benefits of a homogeneous light levels
-within a space~\cite{azaise13,bwkk15,gb16},
-there is often differing need for light level based on user.
-The increased control due to the independent positioning of the mirrors
+The benefits of natural light in human-occupied spaces are well documented in the literature~\cite{hhm15,Leslie03,ll01,pce00}, and yet thermal effects also may be significant~\cite{bmbc13} (i.e., too much sunlight can increase temperature to unacceptable levels).
+While many studies focus on the benefits of homogeneous light levels within a space~\cite{azaise13,bwkk15,gb16}, appropriate light levels may differ based on user needs.
+The increased range of lighting effects offered the independent positioning of mirrors
 can provide functional benefits for people that need more or less
-light due to age of the occupant or their task. For example, someone using
-a computer needs less light since the screen is a source of
+light, e.g., due to age of the occupant or the task she or he is performing. For 
+example, someone using a computer may want less light since the screen is a source of
 artificial light while someone reading from physical media like
-a book requires higher light levels. The light level required for
-vision varies with the age of the occupants. As people get older,
-they need higher light levels and increased luminous contrast.
-Furthermore, everyone regardless of age have different qualities
-of vision. Therefore, having a system that can accommodate these
-varying conditions using daylight rather than artificial light is beneficial.
+a book may require higher light levels. Similarly, light levels required for
+vision may vary with the age of the occupants: as people get older, they tend to need 
+higher light levels and increased luminous contrast. Furthermore, regardless of age,
+different people tend to have have different visual acuity. Thus, developing a system 
+that can provide a wide range of lighting effects using daylight rather than artificial light to accommodate these varying requirements is beneficial.
 
-For thermal management, the literature on harvesting sunlight for space
-heating is substantial (see, e.g.,~\cite{deW75,Hunt79,kbd76,Lunde80,smf08,wo06},
-and we do not propose to contribute anything
-new to that field.  We will simply leverage what are already well-understood
-techniques. It is worth acknowledging that many sunlight-based heating systems
-use catoptric systems (primarily for sun tracking). Our contributions here
-will be to integrate a sunlight harvesting system into dual-purpose use, both
-heating and illumination.
+For thermal management, the literature on harvesting sunlight for
+space heating is substantial (see,
+e.g.,~\cite{deW75,Hunt79,kbd76,Lunde80,smf08,wo06}, and we will simply
+leverage such well-understood techniques. As many sunlight-based
+heating systems already use catoptric mechanisms (primarily for sun
+tracking), our primary interest and contributions here will be to
+integrate a sunlight harvesting system to investigate and demonstrate
+dual-purpose use of catoptrics in a single cyber-physical system, both
+for heating and for illumination.
 
-We will explore the use of Markov decision processes for multi-objective
-control of catoptric systems.  We will start with a single objective,
-matching a provided image map that represents a desired illumination pattern,
-and then generalize to include the competing goal of thermal energy
-harvesting.
+In addition to investigating how (1) natural light can be redirected to achieve
+different lighting effects using programmable dynamic orientation of mirrors on 
+pan-tilt units, and (2) to what extent those lighting effects can achieve diverse
+objectives such as energy collection, temperature control, and people's quality 
+of experience in a space, we will also explore (3) how Markov decision processes 
+(MDPs) can be used to generate policies automatically for multi-objective control of 
+catoptric systems.  The choice of MDPs to generate such policies is motivated in part 
+by the influence of stochastic factors such as wireless network packet loss between
+a high-level controller and the units that control the mirrors themselves, and 
+environmental effects such as cloud cover on the natural light that is available.
 
-For the purpose of designing an MDP, we will assume that a low-level
-control mechanism exists that can position each individual mirror as
-desired.  The MDP will model the higher-level management issues, e.g.,
-which mirror should be pointed in which direction?
+Another motivation for using MDPs is their efficacy in generating highly regular 
+policies that can be implemented efficiently at run-time.  For example, policies for
+proportional sharing of a non-preemptive resource~\cite{gtsg08,gtgs09} can be 
+approximated efficiently on-line with high accuracy~\cite{gtspmgs10}.  Scenarios
+that are relevant to this research, such as using multiple catoptric arrays to
+provide even and consistent lighting of a collaborative work area, have similarly
+regular structure that an MDP-based approach can exploit.  Our prior work also
+shows that custom policies can be generated~\cite{tggs10,tblwgs11} that account for various 
+nuances (e.g., in this proposed research, individual variations in visual acuity and thus 
+lighting needs, as well as constraints to keep thermal effects within desired ranges).
+
+We will start with a single objective, matching a provided image map that represents a 
+desired illumination pattern, and then generalize this to include the separate goal of 
+thermal energy harvesting while keeping room temperatures within a specified range.
+For the purpose of designing an MDP, we will leverage the ability of the low-level
+control mechanism to position each individual mirror as desired.  The MDP state-space 
+will model higher-level management issues, e.g., which mirror should be pointed in which 
+direction at which time, using distributions of mirror positioning latencies (based on 
+the previous positions of the mirrors, network latency including delays due to wireless
+network packet losses, etc.) and variations in natural light that we will capture through 
+profiling studies.  We also will further refine these models, which intially will be based
+on simply commanding the pan-tilt units to point to specific \emph{locations} in space and 
+allowing the lower-level controllers to enact those commands, to a more complete cyber-physical
+model in which positioning commands include specific \emph{trajectories} for each pan-tilt 
+unit including its initial and final position, and the accelerations, velocities, and positions
+it should adhere to in its trajectory along that path - this is important both in its
+ability to enact more rapid adaptations to environmental variations and to perform dynamic
+lighting effects (e.g., to get the attention of the people in a space if an emergency
+alert were issued), but also in terms of tracking the wear-and-tear on the pan-tilt units and 
+how that affects longevity and reliability of the catoptric arrays.
+
 With a low-level controller in place, the state space, $\mathcal{X}$,
 can encapsulate the set of mirrors pointed at each position in
 the image map.  The set of actions, $\mathcal{A}$, will embody the movement
 of one or more mirrors from their present position to a new position,
 and the transition system, $T$, will encode the probabilistic variations
-present in the available sunlight.  This allows the reward function, $R$,
-to be a quantified match between the desired image map and the resulting
-daylight that is directed to each position in the physical space.
-There are any number of approaches to image comparison quantification
-that can be used here~\cite{ds99,my09,wbo97}.
+present in the available sunlight.  In the simplest case, this allows the 
+reward function, $R$, to be a quantified match between the desired image 
+map and the resulting daylight that is directed to each position in the physical space
+(e.g., using existing image comparison quantification techniques~\cite{ds99,my09,wbo97}).
+For more complex cases involving different individualized lighting requirements,
+multiple objectives, etc., we will \emph{convolve} the different objective
+functions to achieve a single common reward function, as we have done
+in our prior work~\cite{tggs10,tblwgs11}.
 
 After an initial exploration of the MDP formulated as described above,
 we will then proceed to expand the framework to include the additional
@@ -69,8 +98,6 @@ will be to proportionally provide sunlight to each goal up to the point
 that the illumination can no longer benefit, at which point all additionally
 available sunlight goes into heating.
 
-\FIXME{Add acceleration profile to MDP formulation.}
-
 In each of the above MDPs under investigation, we will utilize the
 value-optimal solution (guaranteed to exist within Markov decision process
 theory); however, this solution typically must be computed off-line, since
@@ -82,17 +109,16 @@ true value-optimal solution.
 \subsection{Question 2 -- How do we provide for the safety, reliability,
 maintainability, and continued efficacy of these systems?}
 
-The ability to control mirror position is only useful over time if
-the additional considerations of safety, reliability, etc., are managed
+The ability to control mirror position is only useful over time if the
+additional considerations of safety, reliability, etc., are managed
 properly for the system as a whole. To address these issues, we will
 investigate the degree to which they can be handled within the context
-of the low-level controller versus being dealt with within the high-level
-complete system control.
-
-We anticipate some of these considerations being incorporated as constraints
-within the optimization process and others as additional goals that we
-wish to maximize during the multi-objective optimization itself.  Let us
-first consider those that will be addressed as constraints (e.g., safety).
+of the low-level controller versus being dealt with within the
+high-level complete system control. We anticipate some of these
+considerations being incorporated as constraints within the
+optimization process and others as additional goals that we wish to
+maximize during the multi-objective optimization itself.  Let us first
+consider those that will be addressed as constraints (e.g., safety).
 
 \paragraph{Constraints.}
 A commonly used safety constraint on a positioning subsystem is to
@@ -114,7 +140,7 @@ These context sensitive constraints add two additional requirements.
 First, the higher-level management system must be responsible for them.
 In our MDP formulation, we much adjust the feasible state space, $\mathcal{X}$,
 so that they are unreachable (or have sufficiently negative reward as to
-amount to the same thing).
+preclude the policy violating them~\cite{tggs10,tblwgs11}).
 Second, we must also ensure that whatever choices are made by the optimization
 system (whether it be via MDPs or some other approach), the actual
 mirror positions are still constrained so as to not result in an
@@ -150,7 +176,11 @@ The research task here is to develop, experiment with, and evaluate
 Markov decision processes that simultaneously deliver daylight where it
 is most beneficial, maintain the safety of the overall space,
 and provide for the reliability, maintainability, and efficacy of the
-catoptric surface itself.
+catoptric surface itself.  For example, when we introduce accelerations
+of the pan-tilt units into the MDP model as described above, we will bias
+the reward function to avoid hard stops and rapid accelerations which both
+can wear out the pan-tilt units and also may contribute to uncertainty in
+positioning (similar to how wheel-slip must be addresed in mobile robotics).
 
 \subsection{Question 3 -- Can we design abstractions that encapsulate
 subsystems for effective reuse?}
@@ -171,8 +201,7 @@ and users still benefit
 from the structure those models provide.
 
 This occurs largely because standardized interfaces establish clear
-boundaries of
-responsibility on which other layers may rely, while allowing an essential
+boundaries of responsibility on which other layers may rely, while allowing an essential
 ``permission to tinker'' with various implementations between those
 boundaries. For cyber-physical systems, whose semantics include timing
 and physical properties not considered in previous cyber-only system
@@ -185,4 +214,18 @@ two candidate abstractions: direct mirror control and MDP control.
 
 \FIXME{Talk about direct mirror control.}
 
+We will extend our current prototype for mirror control to include concurrent positioning
+of multiple mirror at once - although positioning a mirror takes only seconds currently,
+the latency to adjust an entire row of mirrors in an array is noticable, and may introduce
+undesirable lighting artifacts at least temporarily as mirrors are adjusted.
+
+We also will generalize the usese of light in our approach, by adding
+lenses as well as mirrors, adding color (e.g., by covering some mirrors with colored film),
+and other effects. \FIXME{Chandler and Roger, please elaborate on this.}
+
 \FIXME{Talk about MDP control.}
+
+The MDP models also will be extended to consider concurrent positioning of mirrors, in
+part to ameliorate wear-and-tear on the pan-tilt units, and in part to achieve new dynamic
+lighting effects that can include combinations of sequential and concurrent repositioning.
+
