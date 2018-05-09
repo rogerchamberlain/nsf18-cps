@@ -53,7 +53,7 @@ proportional sharing of a non-preemptive resource~\cite{gtgs09,gtsg08} can be
 approximated efficiently on-line with high accuracy~\cite{gtspmgs10}.  Scenarios
 that are relevant to this research, such as using multiple catoptric arrays to
 provide even and consistent lighting of a collaborative work area, or to generate
-in inhomogeneous pattern according to an input image, have similarly
+an inhomogeneous pattern according to an input image, have similarly
 regular structure that an MDP-based approach can exploit.  Our prior work also
 shows that custom policies can be generated~\cite{tblwgs11,tggs10} that account 
 for various nuances (e.g., in this proposed research, individual variations in 
@@ -82,13 +82,13 @@ will model higher-level management issues, e.g., which mirror should be pointed 
 direction at which time, using distributions of mirror positioning latencies (based on 
 the previous positions of the mirrors, network latency including delays due to wireless
 network packet losses, etc.) and variations in natural light that we will capture 
-through profiling studies.  We also will further refine these models, which intially 
+through profiling studies.  We also will further refine these models, which initially 
 will be based on simply commanding the pan-tilt units to point to specific 
 \emph{locations} in space and allowing the lower-level controllers to enact those 
 commands separately, to a more complete cyber-physical model in which positioning 
 commands may include specific \emph{trajectories} for each pan-tilt unit including 
 its initial and final position, and the ranges of accelerations, velocities, and/or 
-orientations it should remain within during its trajectory along that path - this 
+orientations it should remain within during its trajectory along that path -- this 
 cyber-physical refinement is important both in its ability to enact more rapid 
 adaptations to environmental variations and to perform dynamic lighting effects 
 (e.g., to get the attention of the people in a space if an emergency alert were 
@@ -174,7 +174,7 @@ mirror positions and the ability to determine whether or not the actual
 positions differ from the controlled positions.  This may be accomplished
 either locally (e.g., via shaft encoders on the pan-tilt mechanism) or
 globally (e.g., via a visual monitoring system and appropriate image analysis
-software): we will explore, and compare the consequences of, both options.
+software); we will explore, and compare the consequences of, both options.
 
 \paragraph{Goals.}
 Many of the additional considerations are more appropriately addressed as
@@ -193,11 +193,11 @@ where two mirrors point, with the goals unchanged).  However,
 once we add in considerations of reliability, which are impacted by
 frequency of use and the trajectories used to reposition the mirrors, 
 we now have a much richer search space, whose complexity can be encoded
-effectively in terms of probabilitic rewards.
+effectively in terms of probabilistic rewards.
 The MDP-based optimization approach is particularly well suited for
 this type of problem, and can find value-optimal solutions that incorporate
 wear-and-tear-minimizing movement of mirrors between configurations, thereby 
-diminishing maintainence costs and downtime during the normal use of the system.
+diminishing maintenance costs and downtime during the normal use of the system.
 
 The research task here is to develop, experiment with, and evaluate
 Markov decision processes that simultaneously deliver daylight where it
@@ -268,7 +268,7 @@ We will also extend our current prototype for mirror control to include concurre
 positioning of multiple mirrors at once -- although positioning a mirror takes only 
 seconds currently, which is appropriate to adjust gradually to the progression of 
 the sun's position throughout the day, for more dynamic lighting effects the latency 
-to adjust an entire row of mirrors in an array may be noticable, and may introduce 
+to adjust an entire row of mirrors in an array may be noticeable, and may introduce 
 undesirable lighting artifacts at least temporarily as mirrors are adjusted.
 
 We also will investigate semi-specular reflective surfaces or a
@@ -300,7 +300,7 @@ repositioning.
 
 Both of these software systems (and their associated interfaces), constitute
 abstractions that have strong potential for reuse in other contexts.
-Pan-tilt positioning control is ubiquitious in imaging for use
+Pan-tilt positioning control is ubiquitous in imaging for use
 with cameras (although we have a few features, such as concurrent movement
 at scale, that are likely unique relative to previous systems),
 and we have already used the initial versions of the MDP
